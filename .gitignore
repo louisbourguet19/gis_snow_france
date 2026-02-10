@@ -1,0 +1,30 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Environment
+.env
+
+# Data (large files)
+data/rasters/*.tif
+data/rasters/*.jp2
+*.tif
+*.jp2
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# QGIS
+*.qgz~
+
+# Logs
+*.log
