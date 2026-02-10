@@ -1,11 +1,11 @@
 # Project Contributors
 
-**Louis Bourguet** - [Partner Name]
+**Louis Bourguet** - **François Proust--Juvin** 
 
 ## Contributions
 
 - Louis: ETL pipeline development, database schema design, QGIS visualization
-- [Partner]: Data acquisition module, raster processing, documentation
+- François: Data acquisition module, raster processing, documentation
 
 ## Academic Context
 
