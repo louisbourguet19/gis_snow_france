@@ -38,7 +38,7 @@ class RasterProcessor:
                 "Please ensure alpine_massifs.geojson is present in data/massifs/"
             )
         
-        print(f"📂 Loading massifs from: {self.massifs_file}")
+        print(f"Loading massifs from: {self.massifs_file}")
         massifs_gdf = gpd.read_file(self.massifs_file)
         
         # Ensure CRS is WGS84 (EPSG:4326)
@@ -47,7 +47,7 @@ class RasterProcessor:
         elif massifs_gdf.crs.to_epsg() != 4326:
             massifs_gdf = massifs_gdf.to_crs("EPSG:4326")
         
-        print(f"   ✓ Loaded {len(massifs_gdf)} massifs")
+        print(f"   Loaded {len(massifs_gdf)} massifs")
         
         return massifs_gdf
     
@@ -130,14 +130,14 @@ class RasterProcessor:
                 result_gdf['snow_percent'].fillna(0.0, inplace=True)
                 result_gdf['snow_area_km2'].fillna(0.0, inplace=True)
                 
-                print(f"      ✓ Computed stats for {len(result_gdf)} massifs")
-                print(f"      → Resolution: {raster_resolution:.2f}m")
-                print(f"      → Mean snow %: {result_gdf['snow_percent'].mean():.1f}%")
+                print(f"      Computed stats for {len(result_gdf)} massifs")
+                print(f"      - Resolution: {raster_resolution:.2f}m")
+                print(f"      - Mean snow %: {result_gdf['snow_percent'].mean():.1f}%")
                 
                 return result_gdf
                 
         except Exception as e:
-            print(f"      ✗ Error processing {raster_path}: {e}")
+            print(f"      Error processing {raster_path}: {e}")
             return None
     
     def process_all_rasters(self) -> gpd.GeoDataFrame:
@@ -161,7 +161,7 @@ class RasterProcessor:
         if not raster_files:
             raise ValueError("No raster files found in metadata")
         
-        print(f"\n📊 Processing {len(raster_files)} raster files...\n")
+        print(f"\nProcessing {len(raster_files)} raster files...\n")
         
         # Process each raster
         all_results = []
