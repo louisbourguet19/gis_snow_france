@@ -2,7 +2,7 @@
 
 **Course:** Geospatial Databases  
 **Institution:** FER  
-**Team Members:** Louis Bourguet, [Partner Name]  
+**Team Members:** Louis Bourguet, Francois Proust 
 **Submission Date:** February 2026
 
 ---
