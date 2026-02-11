@@ -10,13 +10,13 @@ set -e  # Exit on error
 
 echo ""
 echo "======================================"
-echo "❄️  Snow Analysis - Setup"
+echo "Snow Analysis - Setup"
 echo "======================================"
 echo ""
 
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
-    echo "❌ Docker n'est pas démarré!"
+    echo "Docker n'est pas démarré!"
     echo "   → Lancez Docker Desktop et réessayez"
     exit 1
 fi
@@ -26,22 +26,22 @@ echo ""
 
 # Check if .env file exists
 if [ ! -f .env ]; then
-    echo "⚠️  Fichier .env non trouvé"
+    echo "Fichier .env non trouvé"
     echo "   → Création depuis .env.example"
     cp .env.example .env
     echo "   ✓ .env créé"
     echo ""
-    echo "⚠️  IMPORTANT: Éditez .env avec vos identifiants Copernicus!"
+    echo "IMPORTANT: Éditez .env avec vos identifiants Copernicus!"
     echo "   → CDSE_USERNAME et CDSE_PASSWORD"
     echo ""
 fi
 
 # Start PostGIS container
-echo "🐳 Démarrage du conteneur PostGIS..."
+echo "Démarrage du conteneur PostGIS..."
 docker-compose up -d
 
 echo ""
-echo "⏳ Attente que PostGIS soit prêt..."
+echo "Attente que PostGIS soit prêt..."
 sleep 5
 
 # Wait for PostGIS to be healthy
@@ -50,22 +50,22 @@ until docker-compose exec -T postgis pg_isready -U postgres > /dev/null 2>&1; do
     sleep 2
 done
 
-echo "✓ PostGIS est prêt!"
+echo "PostGIS est prêt!"
 echo ""
 
 # Check Python version
 if ! command -v python3 &> /dev/null; then
-    echo "❌ Python 3 n'est pas installé"
+    echo "Python 3 n'est pas installé"
     exit 1
 fi
 
 PYTHON_VERSION=$(python3 --version)
-echo "✓ $PYTHON_VERSION détecté"
+echo "$PYTHON_VERSION détecté"
 echo ""
 
 # Create virtual environment if it doesn't exist
 if [ ! -d "venv" ]; then
-    echo "📦 Création de l'environnement virtuel Python..."
+    echo "Création de l'environnement virtuel Python..."
     python3 -m venv venv
     echo "✓ Environnement virtuel créé"
 else
@@ -73,7 +73,7 @@ else
 fi
 
 echo ""
-echo "📦 Installation des dépendances Python..."
+echo "Installation des dépendances Python..."
 
 # Activate virtual environment and install dependencies
 source venv/bin/activate
@@ -88,10 +88,10 @@ echo "✓ Dépendances installées"
 echo ""
 
 echo "======================================"
-echo "✅ Installation terminée!"
+echo "Installation terminée!"
 echo "======================================"
 echo ""
-echo "🚀 Prochaines étapes:"
+echo "Prochaines étapes:"
 echo ""
 echo "1. Configurez vos identifiants dans .env:"
 echo "   → CDSE_USERNAME et CDSE_PASSWORD"
