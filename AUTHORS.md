@@ -11,6 +11,3 @@
 
 This project was developed as part of the Geospatial Databases course at FER (February 2026).
 
-## Contact
-
-For questions about this project, please contact via the course forum or email.
