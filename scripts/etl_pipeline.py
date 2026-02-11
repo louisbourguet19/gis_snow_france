@@ -46,7 +46,7 @@ def main():
             logger.warning("No data downloaded. Check your credentials and AOI settings.")
             return
         
-        logger.info(f"✓ Acquired {len(metadata['downloaded_files'])} files")
+        logger.info(f"Acquired {len(metadata['downloaded_files'])} files")
         
         # Step 2: Raster Processing
         print("\nSTEP 2/3: Raster Processing")
@@ -59,7 +59,7 @@ def main():
             logger.error("No results from raster processing")
             return
         
-        logger.info(f"✓ Processed {len(results)} observations")
+        logger.info(f"Processed {len(results)} observations")
         
         # Step 3: Database Ingestion
         print("\nSTEP 3/3: Database Ingestion")
