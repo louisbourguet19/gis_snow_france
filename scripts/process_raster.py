@@ -215,7 +215,7 @@ class RasterProcessor:
         combined_gdf.to_file(self.output_file, driver='GeoJSON')
         
         print(f"\n{'='*60}")
-        print("✓ Processing complete!")
+        print("Processing complete!")
         print(f"  Total observations: {len(combined_gdf)}")
         print(f"  Unique massifs: {combined_gdf['massif_name'].nunique()}")
         print(f"  Date range: {combined_gdf['date_obs'].min()} to {combined_gdf['date_obs'].max()}")
