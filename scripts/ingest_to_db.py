@@ -42,7 +42,7 @@ class DatabaseIngestor:
     def test_connection(self) -> bool:
         """Test database connection"""
         
-        print("🔌 Testing database connection...")
+        print("Testing database connection...")
         
         try:
             conn = psycopg2.connect(
@@ -60,13 +60,13 @@ class DatabaseIngestor:
             cursor.close()
             conn.close()
             
-            print(f"   ✓ Connected to PostGIS")
-            print(f"   → Version: {version}")
+            print(f"   Connected to PostGIS")
+            print(f"   Version: {version}")
             
             return True
             
         except Exception as e:
-            print(f"   ✗ Connection failed: {e}")
+            print(f"   Connection failed: {e}")
             return False
     
     def load_processed_data(self) -> Optional[gpd.GeoDataFrame]:
@@ -78,12 +78,12 @@ class DatabaseIngestor:
                 "Please run process_raster.py first"
             )
         
-        print(f"\n📂 Loading processed data from: {self.data_file}")
+        print(f"\nLoading processed data from: {self.data_file}")
         
         gdf = gpd.read_file(self.data_file)
         
-        print(f"   ✓ Loaded {len(gdf)} observations")
-        print(f"   → Columns: {list(gdf.columns)}")
+        print(f"   Loaded {len(gdf)} observations")
+        print(f"   Columns: {list(gdf.columns)}")
         
         return gdf
     
@@ -114,7 +114,7 @@ class DatabaseIngestor:
         # Ingest to PostGIS
         table_name = "snow_analysis"
         
-        print(f"📤 Ingesting to table: {table_name}")
+        print(f"Ingesting to table: {table_name}")
         print(f"   Mode: {if_exists}")
         
         try:
@@ -126,7 +126,7 @@ class DatabaseIngestor:
                 dtype={'geometry': 'Geometry'}
             )
             
-            print(f"   ✓ Ingested {len(gdf)} rows")
+            print(f"   Ingested {len(gdf)} rows")
             
             # Get table statistics
             with engine.connect() as conn:
@@ -143,26 +143,26 @@ class DatabaseIngestor:
                 ))
                 date_range = result.fetchone()
             
-            print(f"\n📊 Database Statistics:")
+            print(f"\nDatabase Statistics:")
             print(f"   Total rows: {total_rows}")
             print(f"   Unique massifs: {unique_massifs}")
             print(f"   Date range: {date_range[0]} to {date_range[1]}")
             
         except Exception as e:
-            print(f"   ✗ Ingestion failed: {e}")
+            print(f"   Ingestion failed: {e}")
             raise
         
         finally:
             engine.dispose()
         
         print(f"\n{'='*60}")
-        print("✓ Ingestion complete!")
+        print("Ingestion complete!")
         print(f"{'='*60}\n")
     
     def create_indexes(self) -> None:
         """Create additional indexes for performance"""
         
-        print("\n🔧 Creating indexes...")
+        print("\nCreating indexes...")
         
         try:
             conn = psycopg2.connect(
@@ -197,10 +197,10 @@ class DatabaseIngestor:
             cursor.close()
             conn.close()
             
-            print("   ✓ Indexes created successfully")
+            print("   Indexes created successfully")
             
         except Exception as e:
-            print(f"   ⚠ Index creation warning: {e}")
+            print(f"   Index creation warning: {e}")
 
 
 def main():
@@ -221,7 +221,7 @@ def main():
     # Create indexes
     ingestor.create_indexes()
     
-    print("\n✅ Database ingestion complete! Ready for QGIS connection.")
+    print("\nDatabase ingestion complete! Ready for QGIS connection.")
 
 
 if __name__ == "__main__":
