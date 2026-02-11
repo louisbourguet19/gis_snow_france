@@ -31,12 +31,12 @@ def main():
     """Main ETL pipeline orchestration"""
     
     print("\n" + "="*60)
-    print("❄️  SNOW ANALYSIS ETL PIPELINE")
+    print("SNOW ANALYSIS ETL PIPELINE")
     print("="*60 + "\n")
     
     try:
         # Step 1: Data Acquisition
-        print("\n🚀 STEP 1/3: Data Acquisition")
+        print("\nSTEP 1/3: Data Acquisition")
         print("-" * 60)
         
         logger.info("Starting data acquisition from Copernicus...")
@@ -49,7 +49,7 @@ def main():
         logger.info(f"✓ Acquired {len(metadata['downloaded_files'])} files")
         
         # Step 2: Raster Processing
-        print("\n🚀 STEP 2/3: Raster Processing")
+        print("\nSTEP 2/3: Raster Processing")
         print("-" * 60)
         
         logger.info("Starting raster processing...")
@@ -62,24 +62,24 @@ def main():
         logger.info(f"✓ Processed {len(results)} observations")
         
         # Step 3: Database Ingestion
-        print("\n🚀 STEP 3/3: Database Ingestion")
+        print("\nSTEP 3/3: Database Ingestion")
         print("-" * 60)
         
         logger.info("Starting database ingestion...")
         ingest_to_db.main()
         
-        logger.info("✓ Data ingested successfully")
+        logger.info("Data ingested successfully")
         
         # Success summary
         print("\n" + "="*60)
-        print("✅ ETL PIPELINE COMPLETED SUCCESSFULLY!")
+        print("ETL PIPELINE COMPLETED SUCCESSFULLY!")
         print("="*60)
-        print("\n📊 Summary:")
+        print("\nSummary:")
         print(f"   • Files processed: {len(metadata['downloaded_files'])}")
         print(f"   • Observations: {len(results)}")
         print(f"   • Unique massifs: {results['massif_name'].nunique()}")
         print(f"   • Date range: {results['date_obs'].min()} to {results['date_obs'].max()}")
-        print("\n🎯 Next Steps:")
+        print("\nNext Steps:")
         print("   1. Open QGIS")
         print("   2. Add PostGIS connection (localhost:5432)")
         print("   3. Load 'snow_analysis' layer")
