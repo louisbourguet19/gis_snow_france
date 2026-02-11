@@ -69,7 +69,7 @@ class CopernicusDataAcquisition:
         Returns:
             List of STAC items matching criteria
         """
-        print(f"\n🔍 Searching for products in date range: {date_range}")
+        print(f"\nSearching for products in date range: {date_range}")
         print(f"   AOI Bounding Box: {self.aoi_bbox}")
         
         # Connect to STAC catalog
@@ -92,7 +92,7 @@ class CopernicusDataAcquisition:
             if cloud_cover <= self.cloud_cover_max:
                 filtered_items.append(item)
         
-        print(f"   ✓ Found {len(items)} products, {len(filtered_items)} after cloud filter (<{self.cloud_cover_max}%)")
+        print(f"    Found {len(items)} products, {len(filtered_items)} after cloud filter (<{self.cloud_cover_max}%)")
         
         return filtered_items
     
@@ -119,7 +119,7 @@ class CopernicusDataAcquisition:
         
         asset = item.assets.get(asset_key)
         if not asset:
-            print(f"   ⚠ No suitable asset found for item {item.id}")
+            print(f"   No suitable asset found for item {item.id}")
             return None
         
         # Download URL
@@ -135,10 +135,10 @@ class CopernicusDataAcquisition:
         
         # Skip if already downloaded
         if output_path.exists():
-            print(f"   ⏭ Already downloaded: {filename}")
+            print(f"   Already downloaded: {filename}")
             return str(output_path)
         
-        print(f"   ⬇ Downloading: {filename}")
+        print(f"   Downloading: {filename}")
         
         try:
             # Get access token for authenticated download
@@ -153,11 +153,11 @@ class CopernicusDataAcquisition:
                 for chunk in response.iter_content(chunk_size=8192):
                     f.write(chunk)
             
-            print(f"   ✓ Downloaded: {filename}")
+            print(f"   Downloaded: {filename}")
             return str(output_path)
             
         except Exception as e:
-            print(f"   ✗ Error downloading {filename}: {e}")
+            print(f"   Error downloading {filename}: {e}")
             return None
     
     def acquire_data(self, date_ranges: List[str]) -> Dict:
@@ -208,7 +208,7 @@ class CopernicusDataAcquisition:
             json.dump(metadata, f, indent=2)
         
         print(f"\n{'='*60}")
-        print(f"✓ Acquisition complete!")
+        print(f"Acquisition complete!")
         print(f"  Total files downloaded: {len(metadata['downloaded_files'])}")
         print(f"  Metadata saved to: {self.metadata_file}")
         print(f"{'='*60}\n")
