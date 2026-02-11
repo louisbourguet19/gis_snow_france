@@ -17,22 +17,22 @@ echo ""
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
     echo "Docker n'est pas démarré!"
-    echo "   → Lancez Docker Desktop et réessayez"
+    echo "  - Lancez Docker Desktop et réessayez"
     exit 1
 fi
 
-echo "✓ Docker est démarré"
+echo "Docker est démarré"
 echo ""
 
 # Check if .env file exists
 if [ ! -f .env ]; then
     echo "Fichier .env non trouvé"
-    echo "   → Création depuis .env.example"
+    echo "   - Création depuis .env.example"
     cp .env.example .env
-    echo "   ✓ .env créé"
+    echo "   - .env créé"
     echo ""
     echo "IMPORTANT: Éditez .env avec vos identifiants Copernicus!"
-    echo "   → CDSE_USERNAME et CDSE_PASSWORD"
+    echo "   - CDSE_USERNAME et CDSE_PASSWORD"
     echo ""
 fi
 
@@ -67,9 +67,9 @@ echo ""
 if [ ! -d "venv" ]; then
     echo "Création de l'environnement virtuel Python..."
     python3 -m venv venv
-    echo "✓ Environnement virtuel créé"
+    echo "Environnement virtuel créé"
 else
-    echo "✓ Environnement virtuel déjà existant"
+    echo "Environnement virtuel déjà existant"
 fi
 
 echo ""
@@ -84,7 +84,7 @@ pip install --upgrade pip > /dev/null 2>&1
 # Install dependencies
 pip install -r scripts/requirements.txt
 
-echo "✓ Dépendances installées"
+echo "Dépendances installées"
 echo ""
 
 echo "======================================"
